@@ -4,7 +4,7 @@
 
 $this->pageTitle=Yii::app()->name . ' - Error';
 $this->breadcrumbs=array(
-	'Error',
+    'Error',
 );
 ?>
 <p><?php echo Yii::t('site', 'Please fill out the following form with your login credentials:');?></p>

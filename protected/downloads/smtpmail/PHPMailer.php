@@ -170,7 +170,7 @@ class PHPMailer {
    * supports sendmail's "-oi -f" options
    * @var boolean
    */
-  public $UseSendmailOptions	= true;
+  public $UseSendmailOptions    = true;
   
   /**
    * Path to PHPMailer plugins.  Useful if the SMTP class
@@ -735,9 +735,9 @@ class PHPMailer {
    * @access public
    */
   public static function ValidateAddress($address) {
-	if ((defined('PCRE_VERSION')) && (version_compare(PCRE_VERSION, '8.0') >= 0)) {
-	  return preg_match('/^(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){255,})(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){65,}@)((?>(?>(?>((?>(?>(?>\x0D\x0A)?[	 ])+|(?>[	 ]*\x0D\x0A)?[	 ]+)?)(\((?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-\'*-\[\]-\x7F]|\\\[\x00-\x7F]|(?3)))*(?2)\)))+(?2))|(?2))?)([!#-\'*+\/-9=?^-~-]+|"(?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-!#-\[\]-\x7F]|\\\[\x00-\x7F]))*(?2)")(?>(?1)\.(?1)(?4))*(?1)@(?!(?1)[a-z0-9-]{64,})(?1)(?>([a-z0-9](?>[a-z0-9-]*[a-z0-9])?)(?>(?1)\.(?!(?1)[a-z0-9-]{64,})(?1)(?5)){0,126}|\[(?:(?>IPv6:(?>([a-f0-9]{1,4})(?>:(?6)){7}|(?!(?:.*[a-f0-9][:\]]){7,})((?6)(?>:(?6)){0,5})?::(?7)?))|(?>(?>IPv6:(?>(?6)(?>:(?6)){5}:|(?!(?:.*[a-f0-9]:){5,})(?8)?::(?>((?6)(?>:(?6)){0,3}):)?))?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?9)){3}))\])(?1)$/isD', $address);
-	} elseif (function_exists('filter_var')) { //Introduced in PHP 5.2
+    if ((defined('PCRE_VERSION')) && (version_compare(PCRE_VERSION, '8.0') >= 0)) {
+      return preg_match('/^(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){255,})(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){65,}@)((?>(?>(?>((?>(?>(?>\x0D\x0A)?[     ])+|(?>[     ]*\x0D\x0A)?[     ]+)?)(\((?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-\'*-\[\]-\x7F]|\\\[\x00-\x7F]|(?3)))*(?2)\)))+(?2))|(?2))?)([!#-\'*+\/-9=?^-~-]+|"(?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-!#-\[\]-\x7F]|\\\[\x00-\x7F]))*(?2)")(?>(?1)\.(?1)(?4))*(?1)@(?!(?1)[a-z0-9-]{64,})(?1)(?>([a-z0-9](?>[a-z0-9-]*[a-z0-9])?)(?>(?1)\.(?!(?1)[a-z0-9-]{64,})(?1)(?5)){0,126}|\[(?:(?>IPv6:(?>([a-f0-9]{1,4})(?>:(?6)){7}|(?!(?:.*[a-f0-9][:\]]){7,})((?6)(?>:(?6)){0,5})?::(?7)?))|(?>(?>IPv6:(?>(?6)(?>:(?6)){5}:|(?!(?:.*[a-f0-9]:){5,})(?8)?::(?>((?6)(?>:(?6)){0,3}):)?))?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?9)){3}))\])(?1)$/isD', $address);
+    } elseif (function_exists('filter_var')) { //Introduced in PHP 5.2
         if(filter_var($address, FILTER_VALIDATE_EMAIL) === FALSE) {
           return false;
         } else {
@@ -745,7 +745,7 @@ class PHPMailer {
         }
     } else {
         return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
-	}
+    }
   }
 
   /////////////////////////////////////////////////
@@ -2127,7 +2127,7 @@ class PHPMailer {
    */
   public function EncodeQ($str, $position = 'text') {
     //There should not be any EOL in the string
-	$pattern="";
+    $pattern="";
     $encoded = str_replace(array("\r", "\n"), '', $str);
     switch (strtolower($position)) {
       case 'phrase':
@@ -2446,12 +2446,12 @@ class PHPMailer {
    * @return string
    */
   public function FixEOL($str) {
-	// condense down to \n
-	$nstr = str_replace(array("\r\n", "\r"), "\n", $str);
-	// Now convert LE as needed
-	if ($this->LE !== "\n") {
-		$nstr = str_replace("\n", $this->LE, $nstr);
-	}
+    // condense down to \n
+    $nstr = str_replace(array("\r\n", "\r"), "\n", $str);
+    // Now convert LE as needed
+    if ($this->LE !== "\n") {
+        $nstr = str_replace("\n", $this->LE, $nstr);
+    }
     return  $nstr;
   }
 
@@ -2464,12 +2464,12 @@ class PHPMailer {
    * @return void
    */
   public function AddCustomHeader($name, $value=null) {
-	if ($value === null) {
-		// Value passed in as name:value
-		$this->CustomHeader[] = explode(':', $name, 2);
-	} else {
-		$this->CustomHeader[] = array($name, $value);
-	}
+    if ($value === null) {
+        // Value passed in as name:value
+        $this->CustomHeader[] = explode(':', $name, 2);
+    } else {
+        $this->CustomHeader[] = array($name, $value);
+    }
   }
 
   /**
@@ -2763,8 +2763,8 @@ class PHPMailer {
     $DKIMtime             = time() ; // Signature Timestamp = seconds since 00:00:00 - Jan 1, 1970 (UTC time zone)
     $subject_header       = "Subject: $subject";
     $headers              = explode($this->LE, $headers_line);
-	$from_header          = "";
-	$to_header            = "";
+    $from_header          = "";
+    $to_header            = "";
     foreach($headers as $header) {
       if (strpos($header, 'From:') === 0) {
         $from_header = $header;
