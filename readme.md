@@ -2,11 +2,11 @@
 This is a testdrive app of yaowenh@sumilux.com
 
 # Setup
-It is supposed to run on windows, and the Yii framework should be put under<br><i><strong>C:\local\yii-framework</strong><i>
+It is supposed to run on windows, and the Yii framework should be put under<br><i><strong>C:\local\yii-framework</strong></i>
 <br>(You should be able to access Yii class file by <i>C:\local\yii\framework\yii.php</i>)
 
 The yii version is 1.1.13, and you can get it here:<br>
-<a href="https://github.com/yiisoft/yii2">git@github.com:yiisoft/yii.git</a>
+https://github.com/yiisoft/yii
 
 # Features
 1. TraceableMessageCommand
