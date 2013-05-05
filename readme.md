@@ -1,5 +1,5 @@
 # Description
-This is a testdrive app of yaowenh@sumilux.com
+This is a testdrive app under yii framework
 
 # Setup
 It is supposed to run on windows, and the Yii framework should be put under<br><i><strong>C:\local\yii-framework</strong></i>
