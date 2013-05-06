@@ -99,7 +99,7 @@ EOD;
         $files = CFileHelper::findFiles(realpath($sourcePath), $options);
         
         $messages = array();
-        $source = array();
+        $sources = array();
         
         foreach ($files as $file) {
             
@@ -107,15 +107,17 @@ EOD;
             
             foreach ($_msgs as $category => $msg_rows){
                 foreach ($msg_rows as $msg) {
-                    if ( isset($source[$category][$msg][$file]) ) {
-                        ++$source[$category][$msg][$file];
+                    if ( isset($sources[$category][$msg][$file]) ) {
+                        ++$sources[$category][$msg][$file];
                     } else {
-                        $source[$category][$msg][$file] = 1;
+                        $sources[$category][$msg][$file] = 1;
                     }
                 }
             }            
             $messages = array_merge_recursive($messages, $_msgs);
         }
+        
+        unset($messages['yii'], $messages['zii'], $sources['yii'], $sources['zii']);
         
         foreach ($languages as $language) {
             $dir = $messagePath . DIRECTORY_SEPARATOR . $language;
@@ -123,7 +125,7 @@ EOD;
                 @mkdir($dir);
             foreach ($messages as $category => $msgs) {
                 $msgs = array_values(array_unique($msgs));
-                $this->generateMessageFile($msgs, $dir . DIRECTORY_SEPARATOR . $category . '.php', $overwrite, $removeOld, $sort, $source[$category]);
+                $this->generateMessageFile($msgs, $dir . DIRECTORY_SEPARATOR . $category . '.php', $overwrite, $removeOld, $sort, $sources[$category]);
             }
         }
     }
@@ -252,7 +254,7 @@ EOD;
 
 // **********************************************************
 // the comment under each translation item indicates which files that message
-// is used in. And the number in braces tells how many times it appears in
+// is used in. And the number in parentheses tells how many times it appears in
 // that file (omitted if only once).
 // **********************************************************
 
